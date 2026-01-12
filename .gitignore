@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Environment Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build outputs
+dist/
+build/
+*.log
+*.log.*
+
+# Uploaded files
+server/uploads/*
+!server/uploads/.gitkeep
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Documentation files (not needed in production)
+API_TESTING.md
+CHECKLIST.md
+COMMANDS.md
+DELIVERY_REPORT.md
+DEPLOYMENT.md
+EMAIL_SETUP_GUIDE.md
+EMAIL_SETUP_INSTRUCTIONS.md
+FEATURES.md
+IMPROVEMENTS.md
+PROJECT_SUMMARY.md
+SETUP_GUIDE.md
+START_HERE.md
+TESTING_GUIDE.md
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# OS files
+Thumbs.db
+Desktop.ini
