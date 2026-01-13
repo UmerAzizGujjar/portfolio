@@ -176,6 +176,8 @@ NODE_ENV=development
 PORT=5000
 ```
 
+> ⚠️ **Important**: Never commit your `.env` file! It's already in `.gitignore` for your protection.
+
 4. Run the setup script to create admin user:
 ```bash
 node setup.js
@@ -218,23 +220,27 @@ Frontend will run on `http://localhost:5173`
 
 ### Environment Variables
 
+> ⚠️ **SECURITY WARNING**: Never commit your actual `.env` file or real credentials to GitHub! The values below are EXAMPLES ONLY. Replace them with your own secure credentials.
+
 #### Backend (.env)
 ```env
-# Database
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/portfolio
+# Database - Replace with your actual MongoDB Atlas connection string
+MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<database>?retryWrites=true&w=majority
 
-# JWT
-JWT_SECRET=your_super_secret_jwt_key_change_in_production
+# JWT - Use a strong, random secret (minimum 32 characters)
+JWT_SECRET=generate_your_own_secure_random_string_here_minimum_32_chars
 JWT_EXPIRE=7d
 
-# Email Configuration (Gmail)
-EMAIL_USER=your_email@gmail.com
-EMAIL_PASSWORD=your_gmail_app_password
+# Email Configuration (Gmail) - Use your Gmail App Password
+EMAIL_USER=your_actual_email@gmail.com
+EMAIL_PASSWORD=your_16_digit_app_password
 
 # Server
 NODE_ENV=development
 PORT=5000
 ```
+
+> 💡 **Tip**: The `.env` file is already in `.gitignore` to prevent accidental commits. Always use `.env.example` for documentation.
 
 #### Frontend (.env)
 ```env
