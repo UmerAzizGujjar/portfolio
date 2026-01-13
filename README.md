@@ -187,13 +187,15 @@ NODE_ENV=development
 
 ### Server - Railway Production Variables
 ```env
-MONGODB_URI=mongodb+srv://portfolio:portfolio123@cluster0.vqpqdli.mongodb.net/umer-portfolio?retryWrites=true&w=majority&appName=Cluster0
-JWT_SECRET=umer_aziz_portfolio_secret_key_2026
+MONGODB_URI=your_mongodb_atlas_connection_string_here
+JWT_SECRET=your_secure_random_secret_key_here
 PORT=5000
 NODE_ENV=production
-EMAIL_USER=umerazizgujjar009@gmail.com
-EMAIL_PASSWORD=ucnhwkcokxhvaybn
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASSWORD=your_gmail_app_password_here
 ```
+
+**Note:** Never commit actual credentials to GitHub. These values are set directly in Railway dashboard.
 
 ### Client (.env) - Optional
 ```env
