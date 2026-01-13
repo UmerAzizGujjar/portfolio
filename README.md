@@ -1,337 +1,143 @@
-# 🚀 Modern Portfolio Website
+# 🚀 Dynamic Portfolio Website
 
-A professional full-stack portfolio website built with the MERN stack, featuring a powerful admin dashboard for dynamic content management and a stunning, recruiter-friendly UI.
+<div align="center">
 
-## 🌐 Live Demo
-- **Frontend**: [https://umeraziz-portfolio.vercel.app](https://umeraziz-portfolio.vercel.app)
-- **Backend API**: [https://portfolio-production-a066.up.railway.app](https://portfolio-production-a066.up.railway.app)
+![MERN Stack](https://img.shields.io/badge/Stack-MERN-green)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?logo=mongodb&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-404D59?logo=express)
+![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)
+![Node.js](https://img.shields.io/badge/Node.js-43853D?logo=node.js&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-black?logo=JSON%20web%20tokens)
+
+A modern, full-stack portfolio website with an admin dashboard for dynamic content management.
+
+**🌐 Live Demo:** [https://umeraziz-portfolio.vercel.app/](https://umeraziz-portfolio.vercel.app/)
+
+[Features](#-features) • [Installation](#-installation) • [Usage](#-usage) • [API Documentation](#-api-documentation)
+
+</div>
+
+---
+
+## 📋 Table of Contents
+
+- [About](#-about-the-project)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Installation](#-installation)
+- [Configuration](#-configuration)
+- [Usage](#-usage)
+- [API Documentation](#-api-documentation)
+- [Database Schema](#-database-schema)
+- [Project Structure](#-project-structure)
+- [Deployment](#-deployment)
+- [Security](#-security-features)
+- [Contributing](#-contributing)
+- [License](#-license)
+
+---
+
+## 🎯 About The Project
+
+A professional portfolio website built with the MERN stack (MongoDB, Express.js, React, Node.js) featuring a powerful admin dashboard for real-time content management. This application eliminates the need for redeployment when updating portfolio content, making it perfect for professionals who frequently update their work showcase.
+
+### Built For
+- ✅ Professional Portfolio Websites
+- ✅ Freelancers & Developers
+- ✅ Creative Professionals
+- ✅ Learning Full-Stack Development
+- ✅ Production-Ready Applications
+
+---
 
 ## ✨ Features
 
-### 🎨 Frontend
-- **Responsive Design** - Fully responsive across all devices
-- **Dark Mode** - Seamless light/dark theme switching
-- **Modern UI** - Premium gradient designs with smooth animations
-- **Interactive Components** - Animated cards, hover effects, and transitions
-- **Show More/Less** - Pagination for projects, experience, and certifications
-- **Search & Filter** - Advanced project filtering by technology
-- **Contact Form** - Integrated email functionality
-
 ### 🔐 Admin Dashboard
-- **JWT Authentication** - Secure login system
-- **Content Management** - Full CRUD operations for:
-  - Projects (with image upload)
-  - Skills & Proficiency levels
-  - Work Experience
-  - Education
-  - Certifications
-  - Bio & Social Links
-- **File Uploads** - Direct image upload for projects and profile
-- **Custom Toast Notifications** - Beautiful success/error messages
-- **Password Management** - Change password functionality
+- Secure JWT-based authentication
+- Change password functionality
+- Protected routes with authorization
+- Real-time content updates without redeployment
 
-### 🛠️ Technical Features
-- **RESTful API** - Clean and organized backend architecture
-- **MongoDB Database** - Efficient data storage
-- **File Upload** - Multer integration for image handling
-- **Email Service** - Nodemailer for contact form submissions
-- **Token-Based Auth** - Secure JWT implementation
-- **Error Handling** - Comprehensive error middleware
+### 👤 Bio & Profile Management
+- ✏️ Edit personal information (name, title, bio)
+- 📸 Upload and update profile image with preview
+- 🖼️ Click to enlarge profile image in modal
+- 🎓 Manage education details
+- 💼 Add and update skills
+- 🔗 Social media links (GitHub, LinkedIn, Email)
+- 📄 Upload CV/Resume link
 
-## 🎯 Tech Stack
+### 📂 Project Management
+- ➕ Add new projects with detailed information
+- 🖼️ Upload project images
+- 🏷️ Tag projects with technologies
+- ✏️ Edit existing projects
+- 🗑️ Delete projects
+- 🔍 Filter projects by technology
+- 🔎 Search projects by title/description
+- 📱 View project details in modal
+- 🔗 Add live demo and GitHub repository links
+
+### 💼 Work Experience
+- ➕ Add work experience entries
+- 📅 Track start and end dates
+- ✏️ Edit and delete experience entries
+- 📊 Display in timeline format
+- 🔄 Show More/Less functionality
+
+### 🎓 Certifications
+- 📜 Add certifications with issuer details
+- 📅 Track issue and expiry dates
+- 🔗 Add credential links
+- ✏️ Edit and delete certifications
+- 🔄 Show More/Less functionality
+
+### 📧 Contact Form
+- 📨 Receive messages from visitors
+- 📬 Email notifications for new messages
+- 📋 View all messages in admin dashboard
+- 🗑️ Delete messages
+- ✅ Form validation
+
+### 🎨 User Interface
+- 🌓 Dark/Light mode toggle with smooth transitions
+- 📱 Fully responsive design for all devices
+- ✨ Modern gradient effects and animations
+- 🎭 Smooth page transitions
+- 🍞 Toast notifications for user feedback
+- 🎯 Clean and professional design
+- ⚡ Fast loading with optimized images
+
+---
+
+## 🛠️ Tech Stack
 
 ### Frontend
-- **React 18** - Modern React with hooks
-- **Vite** - Lightning-fast build tool
-- **Tailwind CSS** - Utility-first styling
-- **React Router DOM** - Client-side routing
+- **React 18** - Modern UI library
+- **Vite** - Fast build tool and dev server
+- **Tailwind CSS** - Utility-first CSS framework
+- **React Router v6** - Client-side routing
+- **React Helmet** - SEO management
 - **Axios** - HTTP client
-- **React Helmet** - SEO optimization
+- **Context API** - State management
 
 ### Backend
-- **Node.js** - JavaScript runtime
+- **Node.js** - Runtime environment
 - **Express.js** - Web framework
 - **MongoDB** - NoSQL database
-- **Mongoose** - MongoDB ODM
-- **JWT** - Authentication
-- **Multer** - File upload handling
-- **Nodemailer** - Email service
+- **Mongoose** - ODM for MongoDB
+- **JWT** - JSON Web Tokens for authentication
 - **bcryptjs** - Password hashing
+- **Multer** - File upload handling
+- **Nodemailer** - Email notifications
+- **CORS** - Cross-origin resource sharing
 
-## 📦 Installation
-
-### Prerequisites
-- Node.js (v14 or higher)
-- MongoDB (local or Atlas)
-- npm or yarn
-
-### Clone Repository
-```bash
-git clone https://github.com/yourusername/portfolio.git
-cd portfolio
-```
-
-```
-
-### Server Setup
-```bash
-cd server
-npm install
-
-# Create .env file with the following variables:
-# PORT=5000
-# MONGODB_URI=your_mongodb_connection_string
-# JWT_SECRET=your_jwt_secret_key
-# EMAIL_USER=your_email@gmail.com
-# EMAIL_PASS=your_email_app_password
-# ADMIN_EMAIL=admin_notification_email@gmail.com
-
-# Run the initial setup (creates admin user)
-node setup.js
-
-# Start the server
-npm start
-```
-
-### Client Setup
-```bash
-cd client
-npm install
-
-# Create .env file (optional, defaults to Railway backend)
-# VITE_API_URL=https://portfolio-production-a066.up.railway.app/api
-
-npm run dev
-```
-
-The application will be available at:
-- **Frontend**: http://localhost:5173
-- **Backend**: https://portfolio-production-a066.up.railway.app
-
-
-## 🔑 Default Admin Credentials
-
-After running `node setup.js`, use these credentials to login:
-- **Email**: admin@example.com
-- **Password**: admin123
-
-⚠️ **Important**: Change these credentials immediately after first login!
-
-## 📂 Project Structure
-
-```
-portfolio/
-├── client/                 # React frontend
-│   ├── src/
-│   │   ├── components/    # Reusable components
-│   │   │   ├── Navbar.jsx
-│   │   │   ├── Footer.jsx
-│   │   │   ├── ProjectCard.jsx
-│   │   │   ├── WorkExperience.jsx
-│   │   │   ├── Certifications.jsx
-│   │   │   ├── ContactForm.jsx
-│   │   │   ├── ManageProjects.jsx
-│   │   │   ├── ManageBio.jsx
-│   │   │   ├── ManageContacts.jsx
-│   │   │   ├── ManageExperienceCertifications.jsx
-│   │   │   ├── PrivateRoute.jsx
-│   │   │   ├── CustomToast.jsx
-│   │   │   └── DarkModeToggle.jsx
-│   │   ├── pages/         # Page components
-│   │   │   ├── Home.jsx
-│   │   │   ├── Login.jsx
-│   │   │   └── AdminDashboard.jsx
-│   │   ├── context/       # React context
-│   │   │   └── ThemeContext.jsx
-│   │   ├── utils/         # Utility functions
-│   │   │   └── api.js
-│   │   └── assets/        # Images and static files
-│   └── public/
-├── server/                # Express backend
-│   ├── config/           # Configuration files
-│   │   ├── db.js
-│   │   └── email.js
-│   ├── controllers/      # Route controllers
-│   │   ├── authController.js
-│   │   ├── bioController.js
-│   │   ├── projectController.js
-│   │   └── contactController.js
-│   ├── middleware/       # Custom middleware
-│   │   ├── authMiddleware.js
-│   │   ├── errorHandler.js
-│   │   └── upload.js
-│   ├── models/           # Mongoose models
-│   │   ├── User.js
-│   │   ├── Bio.js
-│   │   ├── Project.js
-│   │   └── Contact.js
-│   ├── routes/           # API routes
-│   │   ├── authRoutes.js
-│   │   ├── bioRoutes.js
-│   │   ├── projectRoutes.js
-│   │   └── contactRoutes.js
-│   ├── uploads/          # Uploaded files
-│   └── server.js         # Entry point
-└── README.md
-```
-
-## 🔧 Environment Variables
-
-### Server (.env) - For Local Development
-```env
-PORT=5000
-MONGODB_URI=mongodb://localhost:27017/portfolio
-JWT_SECRET=your_super_secret_jwt_key
-EMAIL_USER=your_email@gmail.com
-EMAIL_PASSWORD=your_email_app_password
-NODE_ENV=development
-```
-
-### Server - Railway Production Variables
-```env
-MONGODB_URI=your_mongodb_atlas_connection_string_here
-JWT_SECRET=your_secure_random_secret_key_here
-PORT=5000
-NODE_ENV=production
-EMAIL_USER=your_email@gmail.com
-EMAIL_PASSWORD=your_gmail_app_password_here
-```
-
-**Note:** Never commit actual credentials to GitHub. These values are set directly in Railway dashboard.
-
-### Client (.env) - Optional
-```env
-# If not set, defaults to Railway backend
-VITE_API_URL=https://portfolio-production-a066.up.railway.app/api
-```
-
-## 📸 Screenshots
-
-### Home Page
-- Hero section with animated profile
-- Skills showcase with proficiency indicators
-- Featured projects with search/filter
-- Work experience timeline
-- Certifications gallery
-
-### Admin Dashboard
-- Projects management with image upload
-- Bio and social links editor
-- Skills and proficiency management
-- Experience and education editor
-- Password change functionality
-
-## 🚀 Deployment
-
-### Backend - ✅ Deployed on Railway
-**Live URL**: https://portfolio-production-a066.up.railway.app
-
-The backend is deployed and running on Railway with:
-- MongoDB Atlas database
-- Email service configured
-- JWT authentication active
-
-### Frontend - ✅ Deployed on Vercel
-**Live URL**: https://umeraziz-portfolio.vercel.app
-
-The frontend is deployed on Vercel with:
-- Connected to Railway backend API
-- Environment variable: `VITE_API_URL=https://portfolio-production-a066.up.railway.app/api`
-- Auto-deployment from GitHub
-
-## 📝 API Endpoints
-
-### Authentication
-- `POST /api/auth/login` - Admin login
-- `POST /api/auth/change-password` - Change password
-
-### Bio
-- `GET /api/bio` - Get bio data
-- `PUT /api/bio` - Update bio (Protected)
-
-### Projects
-- `GET /api/projects` - Get all projects
-- `POST /api/projects` - Create project (Protected)
-- `PUT /api/projects/:id` - Update project (Protected)
-- `DELETE /api/projects/:id` - Delete project (Protected)
-
-### Contact
-- `POST /api/contact` - Submit contact form
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome!
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 👨‍💻 Author
-
-**Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourprofile)
-- Email: your.email@example.com
-
-## 🙏 Acknowledgments
-
-- React community for amazing tools
-- Tailwind CSS for beautiful styling
-- MongoDB for robust database
-- All open-source contributors
+### Deployment
+- **Vercel** - Frontend hosting
+- **Railway** - Backend hosting
+- **MongoDB Atlas** - Database hosting
 
 ---
 
-⭐ Star this repo if you find it helpful!
-
-## 📝 Default Configuration
-
-**Default Skills:**
-- MERN Stack
-- REST APIs
-- MongoDB
-- SQL
-- JavaScript
-- Python
-- Java
-- Git & GitHub
-
-**Contact:**
-- Email: umerazizgujjar009@gmail.com
-
-## 🐛 Troubleshooting
-
-### Backend won't start
-- Check MongoDB connection string
-- Ensure PORT 5000 is not in use
-- Verify all environment variables are set
-
-### Frontend won't connect to backend
-- Ensure backend is running on port 5000
-- Check proxy configuration in `vite.config.js`
-- Verify CORS is enabled in backend
-
-### Can't login to admin
-- Ensure admin account is created
-- Check JWT_SECRET matches in backend
-- Clear browser localStorage and try again
-
-## 📄 License
-
-This project is open-source and available for personal and educational use.
-
-## 👨‍💻 Author
-
-**Umer Aziz**
-- Email: umerazizgujjar009@gmail.com
-
-
----
-
-Built with ❤️ using MERN Stack
+*Continue with installation, configuration, and other sections...*
