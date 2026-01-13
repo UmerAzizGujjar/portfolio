@@ -2,6 +2,8 @@
 
 A professional full-stack portfolio website built with the MERN stack, featuring a powerful admin dashboard for dynamic content management and a stunning, recruiter-friendly UI.
 
+🌐 **Live Demo**: [Backend API](https://portfolio-production-a066.up.railway.app)
+
 ## ✨ Features
 
 ### 🎨 Frontend
@@ -93,11 +95,16 @@ npm start
 ```bash
 cd client
 npm install
+
+# Create .env file (optional, defaults to Railway backend)
+# VITE_API_URL=https://portfolio-production-a066.up.railway.app/api
+
 npm run dev
 ```
 
 The application will be available at:
 - **Frontend**: http://localhost:5173
+- **Backend**: https://portfolio-production-a066.up.railway.app
 - **Backend**: http://localhost:5000
 
 ## 🔑 Default Admin Credentials
@@ -168,19 +175,30 @@ portfolio/
 
 ## 🔧 Environment Variables
 
-### Server (.env)
+### Server (.env) - For Local Development
 ```env
 PORT=5000
 MONGODB_URI=mongodb://localhost:27017/portfolio
 JWT_SECRET=your_super_secret_jwt_key
 EMAIL_USER=your_email@gmail.com
-EMAIL_PASS=your_email_app_password
-ADMIN_EMAIL=admin@example.com
+EMAIL_PASSWORD=your_email_app_password
+NODE_ENV=development
 ```
 
-### Client (.env)
+### Server - Railway Production Variables
 ```env
-VITE_API_URL=http://localhost:5000/api
+MONGODB_URI=mongodb+srv://portfolio:portfolio123@cluster0.vqpqdli.mongodb.net/umer-portfolio?retryWrites=true&w=majority&appName=Cluster0
+JWT_SECRET=umer_aziz_portfolio_secret_key_2026
+PORT=5000
+NODE_ENV=production
+EMAIL_USER=umerazizgujjar009@gmail.com
+EMAIL_PASSWORD=ucnhwkcokxhvaybn
+```
+
+### Client (.env) - Optional
+```env
+# If not set, defaults to Railway backend
+VITE_API_URL=https://portfolio-production-a066.up.railway.app/api
 ```
 
 ## 📸 Screenshots
@@ -201,15 +219,19 @@ VITE_API_URL=http://localhost:5000/api
 
 ## 🚀 Deployment
 
-### Backend (Railway/Render/Heroku)
-1. Set environment variables
-2. Update MongoDB URI to production database
-3. Deploy from GitHub repository
+### Backend - ✅ Deployed on Railway
+**Live URL**: https://portfolio-production-a066.up.railway.app
+
+The backend is already deployed and running on Railway with:
+- MongoDB Atlas database
+- Email service configured
+- JWT authentication active
 
 ### Frontend (Vercel/Netlify)
 1. Build command: `npm run build`
 2. Output directory: `dist`
-3. Set `VITE_API_URL` to production backend URL
+3. Environment variable: `VITE_API_URL=https://portfolio-production-a066.up.railway.app/api`
+4. Deploy from GitHub repository
 
 ## 📝 API Endpoints
 
@@ -302,8 +324,7 @@ This project is open-source and available for personal and educational use.
 
 **Umer Aziz**
 - Email: umerazizgujjar009@gmail.com
-- GitHub: [Your GitHub Profile]
-- LinkedIn: [Your LinkedIn Profile]
+
 
 ---
 
