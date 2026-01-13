@@ -69,7 +69,7 @@ const Home = () => {
         <meta property="og:title" content={`${bio?.name || 'Umer Aziz'} - ${bio?.title || 'MERN Stack Developer'}`} />
         <meta property="og:description" content={bio?.bio} />
         <meta property="og:type" content="website" />
-        {bio?.imageUrl && <meta property="og:image" content={`http://localhost:5000${bio.imageUrl}`} />}
+        {bio?.imageUrl && <meta property="og:image" content={bio.imageUrl.startsWith('http') ? bio.imageUrl : `https://portfolio-production-a066.up.railway.app${bio.imageUrl}`} />}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={`${bio?.name || 'Umer Aziz'} - ${bio?.title}`} />
         <meta name="twitter:description" content={bio?.bio} />
@@ -101,7 +101,7 @@ const Home = () => {
                     <div className="relative">
                       <div className="w-48 h-48 md:w-56 md:h-56 rounded-full p-2 bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 shadow-2xl transform group-hover:scale-105 transition duration-500">
                         <img 
-                          src={bio.imageUrl.startsWith('/uploads') ? `http://localhost:5000${bio.imageUrl}` : bio.imageUrl}
+                          src={bio.imageUrl.startsWith('http') ? bio.imageUrl : `https://portfolio-production-a066.up.railway.app${bio.imageUrl}`}
                           alt={bio.name}
                           onError={(e) => { e.target.style.display = 'none'; }}
                           className="w-full h-full rounded-full object-cover border-4 border-white dark:border-gray-900"

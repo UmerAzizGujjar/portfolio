@@ -58,6 +58,13 @@ const ManageBio = () => {
           description: response.data.education?.description || ''
         }
       });
+      // Set image preview if there's an existing image
+      if (response.data.imageUrl) {
+        const imageUrl = response.data.imageUrl.startsWith('http') 
+          ? response.data.imageUrl 
+          : `https://portfolio-production-a066.up.railway.app${response.data.imageUrl}`;
+        setImagePreview(imageUrl);
+      }
       setLoading(false);
     } catch (error) {
       console.error('Error fetching bio:', error);
@@ -120,8 +127,9 @@ const ManageBio = () => {
       
       toast.success('🖼️ Image uploaded successfully!');
       setSelectedImage(null);
-      setImagePreview(null);
-      fetchBio();
+      
+      // Await fetchBio to complete before continuing
+      await fetchBio();
     } catch (error) {
       console.error('Error uploading image:', error);
       toast.error(error.response?.data?.message || '❌ Failed to upload image');
