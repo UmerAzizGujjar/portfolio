@@ -1,4 +1,11 @@
 const ProjectCard = ({ project }) => {
+  // Construct full image URL for Railway backend
+  const imageUrl = project.image 
+    ? (project.image.startsWith('http') 
+        ? project.image 
+        : `https://portfolio-production-a066.up.railway.app${project.image}`)
+    : 'https://via.placeholder.com/400x300?text=Project+Image';
+
   return (
     <div className="group relative h-full">
       {/* Glow effect on hover */}
@@ -11,7 +18,7 @@ const ProjectCard = ({ project }) => {
         {/* Image Section with overlay */}
         <div className="relative overflow-hidden h-56">
           <img
-            src={project.image || 'https://via.placeholder.com/400x300?text=Project+Image'}
+            src={imageUrl}
             alt={project.title}
             className="w-full h-full object-cover transform group-hover:scale-125 group-hover:rotate-2 transition-all duration-700"
           />
