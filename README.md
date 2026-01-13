@@ -2,7 +2,9 @@
 
 A professional full-stack portfolio website built with the MERN stack, featuring a powerful admin dashboard for dynamic content management and a stunning, recruiter-friendly UI.
 
-🌐 **Live Demo**: [Backend API](https://portfolio-production-a066.up.railway.app)
+## 🌐 Live Demo
+- **Frontend**: [https://umeraziz-portfolio.vercel.app](https://umeraziz-portfolio.vercel.app)
+- **Backend API**: [https://portfolio-production-a066.up.railway.app](https://portfolio-production-a066.up.railway.app)
 
 ## ✨ Features
 
@@ -105,7 +107,7 @@ npm run dev
 The application will be available at:
 - **Frontend**: http://localhost:5173
 - **Backend**: https://portfolio-production-a066.up.railway.app
-- **Backend**: http://localhost:5000
+
 
 ## 🔑 Default Admin Credentials
 
@@ -224,16 +226,18 @@ VITE_API_URL=https://portfolio-production-a066.up.railway.app/api
 ### Backend - ✅ Deployed on Railway
 **Live URL**: https://portfolio-production-a066.up.railway.app
 
-The backend is already deployed and running on Railway with:
+The backend is deployed and running on Railway with:
 - MongoDB Atlas database
 - Email service configured
 - JWT authentication active
 
-### Frontend (Vercel/Netlify)
-1. Build command: `npm run build`
-2. Output directory: `dist`
-3. Environment variable: `VITE_API_URL=https://portfolio-production-a066.up.railway.app/api`
-4. Deploy from GitHub repository
+### Frontend - ✅ Deployed on Vercel
+**Live URL**: https://umeraziz-portfolio.vercel.app
+
+The frontend is deployed on Vercel with:
+- Connected to Railway backend API
+- Environment variable: `VITE_API_URL=https://portfolio-production-a066.up.railway.app/api`
+- Auto-deployment from GitHub
 
 ## 📝 API Endpoints
 
