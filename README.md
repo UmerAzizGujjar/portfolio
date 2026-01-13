@@ -140,4 +140,591 @@ A professional portfolio website built with the MERN stack (MongoDB, Express.js,
 
 ---
 
-*Continue with installation, configuration, and other sections...*
+## 📦 Installation
+
+### Prerequisites
+- Node.js (v14 or higher)
+- MongoDB Atlas account (or local MongoDB)
+- npm or yarn
+- Git
+
+### Clone Repository
+```bash
+git clone https://github.com/UmerAzizGujjar/portfolio.git
+cd portfolio
+```
+
+### Backend Setup
+
+1. Navigate to server directory:
+```bash
+cd server
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Create `.env` file in server directory:
+```env
+MONGODB_URI=your_mongodb_atlas_connection_string
+JWT_SECRET=your_secure_jwt_secret_key
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASSWORD=your_email_app_password
+NODE_ENV=development
+PORT=5000
+```
+
+4. Run the setup script to create admin user:
+```bash
+node setup.js
+```
+
+5. Start the backend server:
+```bash
+npm start
+```
+
+Server will run on `http://localhost:5000`
+
+### Frontend Setup
+
+1. Open a new terminal and navigate to client directory:
+```bash
+cd client
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Create `.env` file in client directory:
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+
+4. Start the React development server:
+```bash
+npm run dev
+```
+
+Frontend will run on `http://localhost:5173`
+
+---
+
+## ⚙️ Configuration
+
+### Environment Variables
+
+#### Backend (.env)
+```env
+# Database
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/portfolio
+
+# JWT
+JWT_SECRET=your_super_secret_jwt_key_change_in_production
+JWT_EXPIRE=7d
+
+# Email Configuration (Gmail)
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASSWORD=your_gmail_app_password
+
+# Server
+NODE_ENV=development
+PORT=5000
+```
+
+#### Frontend (.env)
+```env
+# API URL
+VITE_API_URL=http://localhost:5000/api
+```
+
+### Email Setup (Gmail)
+1. Enable 2-Factor Authentication in your Gmail account
+2. Generate an App Password:
+   - Go to Google Account Settings
+   - Security → 2-Step Verification → App passwords
+   - Generate password for "Mail"
+3. Use this app password in `EMAIL_PASSWORD`
+
+---
+
+## 🚀 Usage
+
+### Getting Started
+
+1. **Start Backend Server** (Terminal 1):
+```bash
+cd server
+npm start
+```
+
+2. **Start Frontend** (Terminal 2):
+```bash
+cd client
+npm run dev
+```
+
+3. **Open Browser**: Navigate to `http://localhost:5173`
+
+### Admin Workflows
+
+#### Initial Setup:
+1. Navigate to `/login`
+2. Login with default credentials:
+   - Email: `admin@portfolio.com`
+   - Password: `admin123`
+3. **Important**: Change password immediately after first login
+
+#### Managing Bio:
+1. Access admin dashboard
+2. Navigate to "Manage Bio" section
+3. Update personal information
+4. Upload profile image (max 5MB)
+5. Add skills (comma-separated)
+6. Update education details
+7. Save changes
+
+#### Managing Projects:
+1. Click "Manage Projects" in dashboard
+2. Add new project with:
+   - Title and description
+   - Project image
+   - Technologies (comma-separated)
+   - Live demo URL
+   - GitHub repository URL
+3. Edit or delete existing projects
+
+#### Managing Experience:
+1. Navigate to "Manage Experience" section
+2. Add work experience entries
+3. Specify job title, company, dates
+4. Add description of responsibilities
+
+#### Managing Certifications:
+1. Go to "Manage Certifications"
+2. Add certification details
+3. Include issuer and dates
+4. Add credential links
+
+#### Viewing Messages:
+1. Check "Manage Contacts" section
+2. View all received messages
+3. Delete messages after responding
+
+---
+
+## 📡 API Documentation
+
+### Authentication Endpoints
+
+| Method | Endpoint | Description | Access |
+|--------|----------|-------------|--------|
+| POST | `/api/auth/login` | Admin login | Public |
+| POST | `/api/auth/change-password` | Change password | Private |
+
+### Bio Endpoints
+
+| Method | Endpoint | Description | Access |
+|--------|----------|-------------|--------|
+| GET | `/api/bio` | Get bio information | Public |
+| PUT | `/api/bio` | Update bio | Private (Admin) |
+| POST | `/api/bio/upload-image` | Upload profile image | Private (Admin) |
+
+### Project Endpoints
+
+| Method | Endpoint | Description | Access |
+|--------|----------|-------------|--------|
+| GET | `/api/projects` | Get all projects | Public |
+| GET | `/api/projects/:id` | Get single project | Public |
+| POST | `/api/projects` | Create project | Private (Admin) |
+| PUT | `/api/projects/:id` | Update project | Private (Admin) |
+| DELETE | `/api/projects/:id` | Delete project | Private (Admin) |
+
+### Contact Endpoints
+
+| Method | Endpoint | Description | Access |
+|--------|----------|-------------|--------|
+| POST | `/api/contact` | Send contact message | Public |
+| GET | `/api/contact` | Get all messages | Private (Admin) |
+| DELETE | `/api/contact/:id` | Delete message | Private (Admin) |
+
+### Request Examples
+
+#### Login
+```bash
+POST /api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@portfolio.com",
+  "password": "admin123"
+}
+```
+
+#### Update Bio
+```bash
+PUT /api/bio
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "title": "Full Stack Developer",
+  "bio": "Passionate developer with 5 years experience...",
+  "skills": ["React", "Node.js", "MongoDB"],
+  "email": "john@example.com",
+  "github": "https://github.com/johndoe",
+  "linkedin": "https://linkedin.com/in/johndoe",
+  "cvLink": "https://example.com/cv.pdf"
+}
+```
+
+#### Create Project
+```bash
+POST /api/projects
+Authorization: Bearer <token>
+Content-Type: multipart/form-data
+
+{
+  "title": "E-Commerce Platform",
+  "description": "A full-stack e-commerce application...",
+  "technologies": "React, Node.js, MongoDB, Stripe",
+  "liveUrl": "https://example.com",
+  "githubUrl": "https://github.com/user/project",
+  "projectImage": <file>
+}
+```
+
+#### Send Contact Message
+```bash
+POST /api/contact
+Content-Type: application/json
+
+{
+  "name": "Jane Smith",
+  "email": "jane@example.com",
+  "message": "I'd like to discuss a project..."
+}
+```
+
+---
+
+## 🗄️ Database Schema
+
+### User Collection
+```javascript
+{
+  email: String (unique, required),
+  password: String (hashed, required),
+  role: String (default: 'admin'),
+  createdAt: Date,
+  updatedAt: Date
+}
+```
+
+### Bio Collection
+```javascript
+{
+  name: String (required),
+  title: String (required),
+  bio: String (required),
+  skills: [String],
+  email: String (required),
+  github: String,
+  linkedin: String,
+  cvLink: String,
+  imageUrl: String,
+  education: {
+    degree: String,
+    institution: String,
+    startDate: Date,
+    endDate: Date,
+    isCurrentlyPursuing: Boolean,
+    currentSemester: String,
+    description: String
+  },
+  createdAt: Date,
+  updatedAt: Date
+}
+```
+
+### Project Collection
+```javascript
+{
+  title: String (required),
+  description: String (required),
+  technologies: [String],
+  imageUrl: String,
+  liveUrl: String,
+  githubUrl: String,
+  createdAt: Date,
+  updatedAt: Date
+}
+```
+
+### Contact Collection
+```javascript
+{
+  name: String (required),
+  email: String (required),
+  message: String (required),
+  createdAt: Date
+}
+```
+
+---
+
+## 📁 Project Structure
+
+```
+portfolio/
+├── client/                          # Frontend React application
+│   ├── public/
+│   │   └── index.html
+│   ├── src/
+│   │   ├── assets/
+│   │   │   └── images/
+│   │   ├── components/
+│   │   │   ├── Certifications.jsx
+│   │   │   ├── ChangePassword.jsx
+│   │   │   ├── ConfirmDialog.jsx
+│   │   │   ├── ContactForm.jsx
+│   │   │   ├── DarkModeToggle.jsx
+│   │   │   ├── Footer.jsx
+│   │   │   ├── ManageBio.jsx
+│   │   │   ├── ManageContacts.jsx
+│   │   │   ├── ManageExperienceCertifications.jsx
+│   │   │   ├── ManageProjects.jsx
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── PrivateRoute.jsx
+│   │   │   ├── ProjectCard.jsx
+│   │   │   └── WorkExperience.jsx
+│   │   ├── context/
+│   │   │   └── ThemeContext.jsx
+│   │   ├── pages/
+│   │   │   ├── AdminDashboard.jsx
+│   │   │   ├── Home.jsx
+│   │   │   └── Login.jsx
+│   │   ├── utils/
+│   │   │   └── api.js
+│   │   ├── App.jsx
+│   │   ├── index.css
+│   │   └── main.jsx
+│   ├── .env
+│   ├── .gitignore
+│   ├── package.json
+│   ├── postcss.config.js
+│   ├── tailwind.config.js
+│   └── vite.config.js
+├── server/                          # Backend Node.js application
+│   ├── config/
+│   │   ├── db.js
+│   │   └── email.js
+│   ├── controllers/
+│   │   ├── authController.js
+│   │   ├── bioController.js
+│   │   ├── contactController.js
+│   │   └── projectController.js
+│   ├── middleware/
+│   │   ├── authMiddleware.js
+│   │   ├── errorHandler.js
+│   │   └── upload.js
+│   ├── models/
+│   │   ├── Bio.js
+│   │   ├── Contact.js
+│   │   ├── Project.js
+│   │   └── User.js
+│   ├── routes/
+│   │   ├── authRoutes.js
+│   │   ├── bioRoutes.js
+│   │   ├── contactRoutes.js
+│   │   └── projectRoutes.js
+│   ├── uploads/                     # Uploaded images
+│   ├── .env
+│   ├── .gitignore
+│   ├── package.json
+│   ├── server.js
+│   └── setup.js
+├── .gitignore
+└── README.md
+```
+
+---
+
+## 🚢 Deployment
+
+### Frontend Deployment (Vercel)
+
+1. **Push to GitHub**:
+```bash
+git add .
+git commit -m "Ready for deployment"
+git push origin main
+```
+
+2. **Deploy on Vercel**:
+   - Go to [Vercel](https://vercel.com)
+   - Import your GitHub repository
+   - Configure project:
+     - Framework Preset: Vite
+     - Root Directory: `client`
+     - Build Command: `npm run build`
+     - Output Directory: `dist`
+   - Add environment variable:
+     - `VITE_API_URL`: Your Railway backend URL
+
+3. **Deploy**: Click "Deploy" and wait for completion
+
+### Backend Deployment (Railway)
+
+1. **Push to GitHub** (if not already done)
+
+2. **Deploy on Railway**:
+   - Go to [Railway](https://railway.app)
+   - Create new project
+   - Deploy from GitHub repository
+   - Select your repository
+   - Configure:
+     - Root Directory: Leave empty or set to `server`
+     - Add environment variables:
+```env
+MONGODB_URI=your_mongodb_atlas_connection_string
+JWT_SECRET=your_production_jwt_secret
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASSWORD=your_email_app_password
+NODE_ENV=production
+PORT=5000
+```
+
+3. **Generate Domain**: Railway will provide a public URL
+
+4. **Update CORS**: Add your Vercel URL to the CORS configuration in `server.js`
+
+### Post-Deployment
+
+1. Update frontend `.env` with Railway backend URL
+2. Redeploy frontend on Vercel
+3. Test all functionality
+4. Change admin password
+5. Add your projects and bio information
+
+---
+
+## 🔐 Security Features
+
+- ✅ **Password Hashing**: bcryptjs with salt rounds
+- ✅ **JWT Authentication**: Secure token-based auth
+- ✅ **Protected Routes**: Middleware for authorization
+- ✅ **File Upload Validation**: Type and size checks
+- ✅ **Input Sanitization**: Mongoose schema validation
+- ✅ **CORS Configuration**: Restricted origins
+- ✅ **Environment Variables**: Sensitive data protection
+- ✅ **Error Handling**: Custom error middleware
+- ✅ **Password Change**: Secure password update
+
+### Security Best Practices
+
+1. **Never commit `.env` files**
+2. **Use strong JWT secrets** (minimum 32 characters)
+3. **Enable HTTPS** in production
+4. **Change default passwords** immediately
+5. **Use environment-specific secrets**
+6. **Regular dependency updates**
+7. **Implement rate limiting** (recommended for production)
+8. **Monitor application logs**
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the project
+2. Create your feature branch:
+```bash
+git checkout -b feature/AmazingFeature
+```
+
+3. Commit your changes:
+```bash
+git commit -m 'Add some AmazingFeature'
+```
+
+4. Push to the branch:
+```bash
+git push origin feature/AmazingFeature
+```
+
+5. Open a Pull Request
+
+### Contribution Guidelines
+
+- Follow existing code style
+- Write meaningful commit messages
+- Test your changes thoroughly
+- Update documentation if needed
+- Add comments for complex logic
+
+---
+
+## 📝 License
+
+This project is created for educational and professional portfolio purposes. Feel free to use it as a template for your own portfolio.
+
+---
+
+## 👨‍💻 Author
+
+**Umer Aziz Gujjar**
+- GitHub: [@UmerAzizGujjar](https://github.com/UmerAzizGujjar)
+- Portfolio: [https://umeraziz-portfolio.vercel.app/](https://umeraziz-portfolio.vercel.app/)
+- Repository: [https://github.com/UmerAzizGujjar/portfolio](https://github.com/UmerAzizGujjar/portfolio)
+
+---
+
+## 🙏 Acknowledgments
+
+- MERN Stack Community
+- React Documentation
+- Tailwind CSS
+- MongoDB Atlas
+- Vercel & Railway for hosting
+- All open-source contributors
+
+---
+
+## 📞 Support
+
+For support, questions, or feature requests:
+- Open an issue in the GitHub repository
+- Contact via the portfolio website
+- Email: Contact through the portfolio contact form
+
+---
+
+## 🔄 Changelog
+
+### Version 1.0.0 (January 2026)
+- ✅ Initial release
+- ✅ Admin dashboard with authentication
+- ✅ Bio and profile management
+- ✅ Project management with image upload
+- ✅ Work experience and certifications
+- ✅ Contact form with email notifications
+- ✅ Dark/light mode toggle
+- ✅ Responsive design
+- ✅ Deployed on Vercel and Railway
+
+---
+
+<div align="center">
+
+**⭐ Star this repository if you find it helpful!**
+
+Made with ❤️ using MERN Stack + Tailwind CSS
+
+</div>
