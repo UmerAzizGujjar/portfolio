@@ -472,14 +472,6 @@ const Home = () => {
                       <span className="text-gray-800 dark:text-gray-200 font-bold text-lg block group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 dark:group-hover:from-blue-400 dark:group-hover:to-purple-400 transition-all">
                         {skill}
                       </span>
-                      
-                      {/* Proficiency indicator */}
-                      <div className="mt-4 w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
-                        <div 
-                          className={`h-full bg-gradient-to-r ${gradientColor} rounded-full transition-all duration-1000 group-hover:w-full`}
-                          style={{ width: '0%' }}
-                        ></div>
-                      </div>
                     </div>
                   </div>
                 </div>
