@@ -18,6 +18,7 @@ const Home = () => {
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [showAllExperience, setShowAllExperience] = useState(false);
   const [showAllCertifications, setShowAllCertifications] = useState(false);
+  const [showImageModal, setShowImageModal] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -98,7 +99,7 @@ const Home = () => {
                     {/* Glowing rings effect */}
                     <div className="absolute -inset-2 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 rounded-full blur-2xl opacity-60 group-hover:opacity-100 animate-pulse transition duration-1000"></div>
                     <div className="absolute -inset-4 bg-gradient-to-r from-pink-400 via-purple-400 to-blue-500 rounded-full blur-3xl opacity-40 animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-                    <div className="relative">
+                    <div className="relative cursor-pointer" onClick={() => setShowImageModal(true)}>
                       <div className="w-48 h-48 md:w-56 md:h-56 rounded-full p-2 bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 shadow-2xl transform group-hover:scale-105 transition duration-500">
                         <img 
                           src={bio.imageUrl.startsWith('http') ? bio.imageUrl : `https://portfolio-production-a066.up.railway.app${bio.imageUrl}`}
@@ -106,6 +107,12 @@ const Home = () => {
                           onError={(e) => { e.target.style.display = 'none'; }}
                           className="w-full h-full rounded-full object-cover border-4 border-white dark:border-gray-900"
                         />
+                      </div>
+                      {/* Hover indicator */}
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="bg-black/50 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium">
+                          Click to enlarge
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -756,6 +763,33 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Image Modal */}
+      {showImageModal && bio?.imageUrl && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm animate-fadeIn p-4"
+          onClick={() => setShowImageModal(false)}
+        >
+          <div className="relative max-w-4xl max-h-[90vh] animate-fadeInUp" onClick={(e) => e.stopPropagation()}>
+            {/* Close button */}
+            <button
+              onClick={() => setShowImageModal(false)}
+              className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
+            >
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            
+            {/* Large image */}
+            <img
+              src={bio.imageUrl.startsWith('http') ? bio.imageUrl : `https://portfolio-production-a066.up.railway.app${bio.imageUrl}`}
+              alt={bio.name}
+              className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
+            />
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>
