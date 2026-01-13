@@ -176,8 +176,6 @@ NODE_ENV=development
 PORT=5000
 ```
 
-> ⚠️ **Important**: Never commit your `.env` file! It's already in `.gitignore` for your protection.
-
 4. Run the setup script to create admin user:
 ```bash
 node setup.js
