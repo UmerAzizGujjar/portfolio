@@ -218,8 +218,6 @@ Frontend will run on `http://localhost:5173`
 
 ### Environment Variables
 
-> ⚠️ **SECURITY WARNING**: Never commit your actual `.env` file or real credentials to GitHub! The values below are EXAMPLES ONLY. Replace them with your own secure credentials.
-
 #### Backend (.env)
 ```env
 # Database - Replace with your actual MongoDB Atlas connection string
@@ -237,9 +235,6 @@ EMAIL_PASSWORD=your_16_digit_app_password
 NODE_ENV=development
 PORT=5000
 ```
-
-> 💡 **Tip**: The `.env` file is already in `.gitignore` to prevent accidental commits. Always use `.env.example` for documentation.
-
 #### Frontend (.env)
 ```env
 # API URL
