@@ -19,6 +19,7 @@ const Home = () => {
   const [showAllExperience, setShowAllExperience] = useState(false);
   const [showAllCertifications, setShowAllCertifications] = useState(false);
   const [showImageModal, setShowImageModal] = useState(false);
+  const [showFilters, setShowFilters] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -589,14 +590,41 @@ const Home = () => {
 
             {/* Technology Filter */}
             {allTechnologies.length > 1 && (
-              <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-xl border-2 border-gray-100 dark:border-gray-700">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
-                  <svg className="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+              <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border-2 border-gray-100 dark:border-gray-700 overflow-hidden">
+                {/* Filter Toggle Button (Mobile Only) */}
+                <button
+                  onClick={() => setShowFilters(!showFilters)}
+                  className="w-full md:hidden flex items-center justify-between p-6 bg-gradient-to-r from-blue-500/10 to-purple-500/10 hover:from-blue-500/20 hover:to-purple-500/20 transition-all"
+                >
+                  <div className="flex items-center gap-3">
+                    <svg className="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                    </svg>
+                    <span className="text-lg font-bold text-gray-900 dark:text-white">Filter by Technology</span>
+                  </div>
+                  <svg
+                    className={`w-5 h-5 text-gray-600 dark:text-gray-400 transition-transform duration-300 ${
+                      showFilters ? 'rotate-180' : ''
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
-                  Filter by Technology
-                </h3>
-                <div className="flex flex-wrap gap-4 justify-center">
+                </button>
+
+                {/* Filter Content */}
+                <div className={`p-8 ${
+                  showFilters ? 'block' : 'hidden md:block'
+                }`}>
+                  <h3 className="hidden md:flex text-lg font-bold text-gray-900 dark:text-white mb-6 items-center gap-3">
+                    <svg className="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                    </svg>
+                    Filter by Technology
+                  </h3>
+                  <div className="flex flex-wrap gap-4 justify-center">
                   {allTechnologies.map((tech) => (
                     <button
                       key={tech}
@@ -614,8 +642,7 @@ const Home = () => {
                       )}
                       {tech}
                     </button>
-                  ))}
-                </div>
+                  ))}                  </div>                </div>
               </div>
             )}
           </div>
@@ -673,28 +700,28 @@ const Home = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-pink-900"></div>
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSI+PHBhdGggZD0iTTM2IDM0djItaDJWMzRoLTJ6bTAtNGgydjJoLTJ2LTJ6bTAgNGgydjJoLTJ2LTJ6bTAtOGgydjJoLTJ2LTJ6bTAtNGgydjJoLTJ2LTJ6bTAtNGgydjJoLTJ2LTJ6bTQgMTZ2LTJoMnYyaC0yem00IDB2LTJoMnYyaC0yem0wLTR2LTJoMnYyaC0yem0wIDh2LTJoMnYyaC0yem0wLTEydi0yaDJ2MmgtMnptMC00di0yaDJ2MmgtMnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-20"></div>
         
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-16 animate-fadeInUp">
-              <h2 className="text-5xl font-bold mb-4 text-white">
+            <div className="text-center mb-12 sm:mb-16 animate-fadeInUp">
+              <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-white px-4">
                 Get In <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Touch</span>
               </h2>
               <div className="h-1 w-24 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto rounded-full mb-4"></div>
-              <p className="text-gray-300 text-lg">
+              <p className="text-gray-300 text-base sm:text-lg px-4">
                 Have a question or want to work together? I'd love to hear from you!
               </p>
             </div>
             
-            <div className="grid lg:grid-cols-2 gap-12">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
               {/* Contact Form */}
-              <div className="animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
+              <div className="animate-fadeInUp w-full" style={{ animationDelay: '0.2s' }}>
                 <ContactForm />
               </div>
 
               {/* Contact Info */}
-              <div className="space-y-6 animate-fadeInUp" style={{ animationDelay: '0.3s' }}>
-                <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 shadow-xl">
-                  <h3 className="text-2xl font-bold text-white mb-6">Contact Information</h3>
+              <div className="space-y-6 animate-fadeInUp w-full" style={{ animationDelay: '0.3s' }}>
+                <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 sm:p-8 border border-white/20 shadow-xl">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-6">Contact Information</h3>
                   
                   <div className="space-y-6">
                     {bio?.email && (
