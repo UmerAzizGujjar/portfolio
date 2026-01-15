@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 
 // Create email transporter
 const createTransporter = () => {
-  return nodemailer.createTransporter({
+  const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 587,
     secure: false, // Use TLS
@@ -14,6 +14,7 @@ const createTransporter = () => {
       rejectUnauthorized: false // Allow connections from Railway/production servers
     }
   });
+  return transporter;
 };
 
 // Send contact form notification email
