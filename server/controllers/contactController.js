@@ -12,13 +12,18 @@ export const submitContact = async (req, res) => {
       return res.status(400).json({ message: 'Please provide all fields' });
     }
 
+    console.log('💬 New contact form submission from:', name);
+
     const contact = await Contact.create({
       name,
       email,
       message
     });
 
+    console.log('✅ Contact saved to database');
+
     // Send email notification (non-blocking)
+    console.log('📧 Starting email notification process...');
     sendContactNotification({ name, email, message })
       .then(result => {
         if (result.success) {
@@ -39,6 +44,7 @@ export const submitContact = async (req, res) => {
       contact
     });
   } catch (error) {
+    console.error('❌ Error in submitContact:', error);
     res.status(500).json({ message: error.message });
   }
 };

@@ -19,6 +19,13 @@ const createTransporter = () => {
 // Send contact form notification email
 export const sendContactNotification = async (contactData) => {
   try {
+    console.log('📧 Attempting to send email...');
+    console.log('Email config:', {
+      user: process.env.EMAIL_USER,
+      hasPassword: !!process.env.EMAIL_PASSWORD,
+      passwordLength: process.env.EMAIL_PASSWORD?.length || 0
+    });
+    
     const transporter = createTransporter();
 
     const mailOptions = {
@@ -87,11 +94,19 @@ Reply to: ${contactData.email}
       `
     };
 
+    console.log('📤 Sending email to:', mailOptions.to);
     const info = await transporter.sendMail(mailOptions);
-    console.log('Email sent successfully:', info.messageId);
+    console.log('✅ Email sent successfully!');
+    console.log('Message ID:', info.messageId);
+    console.log('Response:', info.response);
     return { success: true, messageId: info.messageId };
   } catch (error) {
-    console.error('Error sending email:', error);
+    console.error('❌ ERROR SENDING EMAIL:');
+    console.error('Error name:', error.name);
+    console.error('Error message:', error.message);
+    console.error('Error code:', error.code);
+    console.error('Error command:', error.command);
+    console.error('Full error:', JSON.stringify(error, null, 2));
     // Don't throw error - we still want to save the message in DB even if email fails
     return { success: false, error: error.message };
   }
