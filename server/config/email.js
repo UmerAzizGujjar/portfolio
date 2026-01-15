@@ -2,11 +2,16 @@ import nodemailer from 'nodemailer';
 
 // Create email transporter
 const createTransporter = () => {
-  return nodemailer.createTransport({
-    service: 'gmail',
+  return nodemailer.createTransporter({
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false, // Use TLS
     auth: {
       user: process.env.EMAIL_USER || 'umerazizgujjar009@gmail.com',
       pass: process.env.EMAIL_PASSWORD // App-specific password
+    },
+    tls: {
+      rejectUnauthorized: false // Allow connections from Railway/production servers
     }
   });
 };

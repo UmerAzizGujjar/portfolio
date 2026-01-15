@@ -58,8 +58,8 @@ export const uploadImage = async (req, res) => {
       return res.status(400).json({ message: 'No file uploaded' });
     }
 
-    // Get the Cloudinary URL
-    const imageUrl = req.file.path; // Cloudinary returns the full URL in req.file.path
+    // Get the file URL
+    const imageUrl = `/uploads/${req.file.filename}`;
 
     // Update bio with new image URL
     let bio = await Bio.findOne();

@@ -50,9 +50,9 @@ export const createProject = async (req, res) => {
       featured: featured === 'true' || featured === true
     };
 
-    // Handle image upload - Cloudinary URL
+    // Handle image upload - local path
     if (req.file) {
-      projectData.image = req.file.path; // Cloudinary returns full URL in req.file.path
+      projectData.image = `/uploads/${req.file.filename}`;
     }
 
     const project = await Project.create(projectData);
@@ -84,9 +84,9 @@ export const updateProject = async (req, res) => {
       project.liveLink = req.body.liveLink || project.liveLink;
       project.featured = req.body.featured !== undefined ? req.body.featured : project.featured;
       
-      // Handle image upload - Cloudinary URL
+      // Handle image upload - local path
       if (req.file) {
-        project.image = req.file.path; // Cloudinary returns full URL in req.file.path
+        project.image = `/uploads/${req.file.filename}`;
       } else if (req.body.existingImage) {
         project.image = req.body.existingImage;
       }

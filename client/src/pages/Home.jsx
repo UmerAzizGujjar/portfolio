@@ -43,13 +43,15 @@ const Home = () => {
   // Get all unique technologies from projects
   const allTechnologies = ['All', ...new Set(projects.flatMap(p => p.technologies || []))];
 
-  // Filter projects based on search and technology
-  const filteredProjects = projects.filter(project => {
-    const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         project.description.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesTech = selectedTech === 'All' || project.technologies?.includes(selectedTech);
-    return matchesSearch && matchesTech;
-  });
+  // Filter projects based on search and technology, then sort by newest first
+  const filteredProjects = projects
+    .filter(project => {
+      const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                           project.description.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesTech = selectedTech === 'All' || project.technologies?.includes(selectedTech);
+      return matchesSearch && matchesTech;
+    })
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // Sort by newest first
 
   if (loading) {
     return (

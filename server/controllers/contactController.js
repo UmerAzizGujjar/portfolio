@@ -23,12 +23,15 @@ export const submitContact = async (req, res) => {
       .then(result => {
         if (result.success) {
           console.log('✅ Email notification sent successfully');
+          console.log('Message ID:', result.messageId);
         } else {
-          console.log('⚠️ Email notification failed, but message saved in database');
+          console.log('⚠️ Email notification failed:', result.error);
+          console.log('Message saved in database, but email not sent');
         }
       })
       .catch(err => {
-        console.error('Email notification error:', err);
+        console.error('❌ Email notification error:', err.message);
+        console.error('Full error:', err);
       });
 
     res.status(201).json({

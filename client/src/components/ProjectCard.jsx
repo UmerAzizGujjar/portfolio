@@ -3,11 +3,11 @@ import { useState } from 'react';
 const ProjectCard = ({ project }) => {
   const [showModal, setShowModal] = useState(false);
 
-  // Construct full image URL for Railway backend
+  // Handle both Cloudinary URLs and legacy Railway URLs
   const imageUrl = project.image 
     ? (project.image.startsWith('http') 
-        ? project.image 
-        : `https://portfolio-production-a066.up.railway.app${project.image}`)
+        ? project.image  // Already a full URL (Cloudinary)
+        : `https://portfolio-production-a066.up.railway.app${project.image}`) // Legacy local path
     : 'https://via.placeholder.com/400x300?text=Project+Image';
 
   return (
