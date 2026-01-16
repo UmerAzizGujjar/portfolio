@@ -1,33 +1,19 @@
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
-// Create email transporter
-const createTransporter = () => {
-  const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true, // Use SSL
-    auth: {
-      user: process.env.EMAIL_USER || 'umerazizgujjar009@gmail.com',
-      pass: process.env.EMAIL_PASSWORD // App-specific password
-    }
-  });
-  return transporter;
-};
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Send contact form notification email
 export const sendContactNotification = async (contactData) => {
   try {
-    console.log('📧 Attempting to send email...');
+    console.log('📧 Attempting to send email via Resend...');
     console.log('Email config:', {
-      user: process.env.EMAIL_USER,
-      hasPassword: !!process.env.EMAIL_PASSWORD,
-      passwordLength: process.env.EMAIL_PASSWORD?.length || 0
+      fromEmail: process.env.EMAIL_USER || 'onboarding@resend.dev',
+      toEmail: 'umerazizgujjar009@gmail.com',
+      hasApiKey: !!process.env.RESEND_API_KEY
     });
-    
-    const transporter = createTransporter();
 
-    const mailOptions = {
-      from: process.env.EMAIL_USER || 'umerazizgujjar009@gmail.com',
+    const { data, error } = await resend.emails.send({
+      from: process.env.EMAIL_USER || 'onboarding@resend.dev',
       to: 'umerazizgujjar009@gmail.com',
       subject: `New Portfolio Contact: ${contactData.name}`,
       html: `
@@ -75,37 +61,22 @@ export const sendContactNotification = async (contactData) => {
             </p>
           </div>
         </div>
-      `,
-      // Plain text version for email clients that don't support HTML
-      text: `
-New Contact Message from Portfolio
-
-From: ${contactData.name}
-Email: ${contactData.email}
-
-Message:
-${contactData.message}
-
-Received: ${new Date().toLocaleString()}
-
-Reply to: ${contactData.email}
       `
-    };
+    });
 
-    console.log('📤 Sending email to:', mailOptions.to);
-    const info = await transporter.sendMail(mailOptions);
-    console.log('✅ Email sent successfully!');
-    console.log('Message ID:', info.messageId);
-    console.log('Response:', info.response);
-    return { success: true, messageId: info.messageId };
+    if (error) {
+      console.error('❌ Resend API Error:', error);
+      return { success: false, error: error.message };
+    }
+
+    console.log('✅ Email sent successfully via Resend!');
+    console.log('Message ID:', data.id);
+    return { success: true, messageId: data.id };
   } catch (error) {
     console.error('❌ ERROR SENDING EMAIL:');
     console.error('Error name:', error.name);
     console.error('Error message:', error.message);
-    console.error('Error code:', error.code);
-    console.error('Error command:', error.command);
     console.error('Full error:', JSON.stringify(error, null, 2));
-    // Don't throw error - we still want to save the message in DB even if email fails
     return { success: false, error: error.message };
   }
 };
