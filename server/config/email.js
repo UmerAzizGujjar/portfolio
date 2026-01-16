@@ -13,8 +13,9 @@ export const sendContactNotification = async (contactData) => {
     });
 
     const { data, error } = await resend.emails.send({
-      from: process.env.EMAIL_USER || 'onboarding@resend.dev',
+      from: 'Portfolio Contact <onboarding@resend.dev>',
       to: 'umerazizgujjar009@gmail.com',
+      replyTo: contactData.email, // So you can reply directly to the sender
       subject: `New Portfolio Contact: ${contactData.name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9;">
