@@ -62,7 +62,7 @@ const ManageBio = () => {
       if (response.data.imageUrl) {
         const imageUrl = response.data.imageUrl.startsWith('http') 
           ? response.data.imageUrl 
-          : `https://portfolio-production-a066.up.railway.app${response.data.imageUrl}`;
+          : `https://portfolio-umer-nine.vercel.app${response.data.imageUrl}`;
         setImagePreview(imageUrl);
       }
       setLoading(false);

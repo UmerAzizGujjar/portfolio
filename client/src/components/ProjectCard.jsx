@@ -7,7 +7,7 @@ const ProjectCard = ({ project }) => {
   const imageUrl = project.image 
     ? (project.image.startsWith('http') 
         ? project.image  // Already a full URL (Cloudinary)
-        : `https://portfolio-production-a066.up.railway.app${project.image}`) // Legacy local path
+        : `https://portfolio-umer-nine.vercel.app${project.image}`) // Legacy local path
     : 'https://via.placeholder.com/400x300?text=Project+Image';
 
   return (

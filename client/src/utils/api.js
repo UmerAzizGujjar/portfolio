@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Use Railway backend URL or fallback to local
-const API_URL = import.meta.env.VITE_API_URL || 'https://portfolio-production-a066.up.railway.app/api';
+const API_URL = import.meta.env.VITE_API_URL || 'https://portfolio-umer-nine.vercel.app/api';
 
 // Create axios instance
 const api = axios.create({
