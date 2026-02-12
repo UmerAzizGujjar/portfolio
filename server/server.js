@@ -42,12 +42,17 @@ app.get('/', (req, res) => {
 // Error handling middleware
 app.use(errorHandler);
 
-// Start server
+// Start server (only for local development)
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-  console.log('📧 Email Configuration:');
-  console.log('  - EMAIL_USER:', process.env.EMAIL_USER || 'NOT SET');
-  console.log('  - EMAIL_PASSWORD:', process.env.EMAIL_PASSWORD ? '✓ SET' : '❌ NOT SET');
-  console.log('  - Password length:', process.env.EMAIL_PASSWORD?.length || 0);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+    console.log('📧 Email Configuration:');
+    console.log('  - EMAIL_USER:', process.env.EMAIL_USER || 'NOT SET');
+    console.log('  - EMAIL_PASSWORD:', process.env.EMAIL_PASSWORD ? '✓ SET' : '❌ NOT SET');
+    console.log('  - Password length:', process.env.EMAIL_PASSWORD?.length || 0);
+  });
+}
+
+// Export for Vercel
+export default app;
